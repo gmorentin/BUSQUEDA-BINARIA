@@ -21,9 +21,8 @@ namespace BUSQUEDA_BINARIA
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             txtResultado.Clear();
-            vec.busquedaBin(Convert.ToInt16(txtBuscar.Text));
+            txtResultado.Text+="El numero se encuentra en la posición "+vec.busquedaBin(Convert.ToInt16(txtBuscar.Text))+Environment.NewLine;
             txtResultado.Text += "Se hicieron "+vec.comp+" comparaciones"+Environment.NewLine;
-            txtResultado.Text += "Esta en la posicion "+vec.mitad + Environment.NewLine;
             //txtResultado.Text+="El numero esta en la posicion: "+vec.busquedaBinaria1(Convert.ToInt16(txtBuscar.Text))+Environment.NewLine;
         }
     }

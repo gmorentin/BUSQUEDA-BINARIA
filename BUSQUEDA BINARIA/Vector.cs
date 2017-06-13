@@ -11,74 +11,50 @@ namespace BUSQUEDA_BINARIA
         private int[] vector;
 
         private static Random alea;
-        public int limiteInferior;
-        public int limiteSuperior;
         public int comp;
-        public int mitad;
 
         public Vector()
         {
             vector = new int[500];
             alea = new Random();
-            limiteInferior = 0;
-            limiteSuperior = 0;
-            comp = 0;
-            mitad = 0;
-            llenar();
+            llenaryOrdenar();
         }
 
-        public void llenar()
+        public void llenaryOrdenar()
         {
             for (int i = 0; i < 500; i++)
             {
                 vector[i] = alea.Next(0, 10000);
             }
             Array.Sort(vector);
-            limiteInferior = 0;
-            limiteSuperior = 500;
-        }
-
-        public void busquedaBinaria(int numero)
-        {
-            mitad = limiteSuperior / 2;
-            if (numero == vector[mitad])
-            {
-                comp++;
-            }
-            else BusquedaBinaria(numero, mitad, limiteInferior);
-        }
-
-        public void BusquedaBinaria(int numero, int lS, int lI)
-        {
-            if (numero < vector[mitad])
-            {
-                comp++;
-                mitad = mitad / 2;
-            }
-            else
-            {
-                comp++;
-
-            }
         }
 
 
-        public void busquedaBin(int num)
+        public int busquedaBin(int num)
         {
+            int limiteInferior=0;
+            int limiteSuperior=500;
+            comp=0;
+            int mitad;
+            bool encontrado = false;
+
             mitad = limiteSuperior / 2;
             if (vector[mitad] == num)
+            {
                 comp++;
+                return mitad;
+            }
             else
             {
-                while (limiteInferior <= limiteSuperior)
+                while (limiteInferior <= limiteSuperior && encontrado==false)
                 {
                     mitad = (limiteInferior + limiteSuperior) / 2;
                     if (vector[mitad] == num)
                     {
                         comp++;
-                        break;
+                        encontrado = true;
                     }
-                    
+                    else
                     if (vector[mitad] > num)
                     {
                         limiteSuperior = mitad - 1;
@@ -90,6 +66,7 @@ namespace BUSQUEDA_BINARIA
                         comp++;
                     }
                 }
+                return mitad;
             }
         }
 
